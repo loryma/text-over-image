@@ -58,9 +58,9 @@ module.exports = {
         },
       ]
     }),
-    new ESLintPlugin({
-      files: ['.', 'src', 'config'],
-      formatter: 'table'
-    })
+    // new ESLintPlugin({
+    //   files: ['.', 'src', 'config'],
+    //   formatter: 'table'
+    // })
   ],
 }
