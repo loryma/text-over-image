@@ -1,0 +1,20 @@
+.textOverlay {
+  position: relative;
+  &__img {
+    width: 100%;
+    display: block;
+  }
+  &__textContainer {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+  }
+  &\--transparentTextLayer {
+    .textOverlay__textContainer {
+      background-color: rgba(0,0,0,0.45);
+    }
+  }
+}

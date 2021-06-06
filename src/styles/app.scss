@@ -1,0 +1,25 @@
+$font-size: 1rem;
+
+html, body {
+  font-size: $font-size;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.masonery {
+  display: grid;
+  &__item {
+    color: white;
+    text-align: center;
+  }
+  &__header {
+    font-size: 21px;
+    margin: 1rem 0 0.5rem 0;
+  }
+  &__description {
+    color: grey;
+    margin: 0 0 1rem 0;
+    font-style: italic;
+  }
+}
