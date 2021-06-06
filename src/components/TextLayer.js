@@ -2,9 +2,10 @@ import React from 'react';
 import classes from './textOverlayStyles.scss';
 
 function TextOverlay({ url, type, children, wrapperClassname }) {
-  console.log(`textOverlay--${type}`)
+  const isTypeArray = Array.isArray(type);
+  const typeClass = isTypeArray ? type.map(el => classes[`textOverlay--${el}`]).join(' ') : classes[`textOverlay--${type}`];
   return (
-    <div className={[classes.textOverlay, classes[`textOverlay--${type}`],  wrapperClassname ? wrapperClassname : '' ].join(' ')}>
+    <div className={[classes.textOverlay, typeClass,  wrapperClassname ? wrapperClassname : '' ].join(' ')}>
       <img className={classes.textOverlay__img} src={url} />
       <div className={classes.textOverlay__textContainer}>
         {children}
