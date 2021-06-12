@@ -1,50 +1,40 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import TextOverlay from './components/TextLayer';
 import classes from './styles/app.scss';
+import { API } from './api';
+
+const TEXT_OVERLAY_TYPES = [
+  "transparentTextLayer",
+  "gradientTextLayer",
+  "textShadow",
+  "tintedBackground",
+  "textBackground",
+];
 
 function App() {
+  const [posts, setPosts] = useState();
+
+  useEffect(() => {
+    API.getPosts(5)
+      .then(data => data.json())
+      .then(data => setPosts(data.data))
+      .catch(error => console.log(error));
+  }, [setPosts]);
+
+  if (!posts) return <div>...Loading</div>
+
   return (
     <div className={classes.masonery}>
-      <TextOverlay 
-        url="https://images.unsplash.com/photo-1517886703796-91acf7e02e1b" 
-        wrapperClassname={classes.masonery__item}
-        type="transparentTextLayer"
-      >
-          <h4 className={classes.masonery__header}>Transparent Text Layer</h4>
-          <p className={classes.masonery__description}> Long and detailed description of the image content</p>
-      </TextOverlay>
-      <TextOverlay 
-        url="https://images.unsplash.com/photo-1517886703796-91acf7e02e1b" 
-        wrapperClassname={classes.masonery__item}
-        type="gradientTextLayer"
-      >
-          <h4 className={classes.masonery__header}>Gradient Text Layer</h4>
-          <p className={classes.masonery__description}> Long and detailed description of the image content</p>
-      </TextOverlay>
-      <TextOverlay 
-        url="https://images.unsplash.com/photo-1517886703796-91acf7e02e1b" 
-        wrapperClassname={classes.masonery__item}
-        type="textShadow"
-      >
-          <h4 className={classes.masonery__header}>Text shadow</h4>
-          <p className={classes.masonery__description}>Long and detailed description of the image content</p>
-      </TextOverlay>
-      <TextOverlay 
-        url="https://images.unsplash.com/photo-1517886703796-91acf7e02e1b" 
-        wrapperClassname={classes.masonery__item}
-        type="tintedBackground"
-      >
-          <h4 className={classes.masonery__header}>Tinted background</h4>
-          <p className={classes.masonery__description}>Long and detailed description of the image content</p>
-      </TextOverlay>
-      <TextOverlay 
-        url="https://images.unsplash.com/photo-1517886703796-91acf7e02e1b" 
-        wrapperClassname={classes.masonery__item}
-        type="textBackground"
-      >
-          <h4 className={classes.masonery__header}>Text background</h4>
-          <p className={classes.masonery__description}>Long and detailed description of the image content</p>
-      </TextOverlay>
+      {posts.map(({text, image}, i) => (
+        <TextOverlay 
+          url={image} 
+          wrapperClassname={classes.masonery__item}
+          type={TEXT_OVERLAY_TYPES[i]}
+        >
+            <h4 className={classes.masonery__header}>{TEXT_OVERLAY_TYPES[i]}</h4>
+            <p className={classes.masonery__description}> {text} </p>
+        </TextOverlay>
+      ))}
   </div>
   );
 };
