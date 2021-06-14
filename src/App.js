@@ -7,7 +7,7 @@ import accessibleImg from './accessible.jpg';
 const TEXT_OVERLAY_TYPES = [
   "transparentTextLayer",
   "gradientTextLayer",
-  "textShadow",
+  ["textShadow", "gradientTextLayer"],
   "tintedBackground",
   "textBackground",
   "accessibleOverlayColor",
