@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import TextOverlay from './components/TextLayer';
 import classes from './styles/app.scss';
 import { API } from './api';
+import accessibleImg from './accessible.jpg';
 
 const TEXT_OVERLAY_TYPES = [
   "transparentTextLayer",
@@ -9,6 +10,7 @@ const TEXT_OVERLAY_TYPES = [
   "textShadow",
   "tintedBackground",
   "textBackground",
+  "accessibleOverlayColor",
 ];
 
 function App() {
@@ -35,6 +37,14 @@ function App() {
             <p className={classes.masonery__description}> {text} </p>
         </TextOverlay>
       ))}
+      <TextOverlay 
+        url={accessibleImg} 
+        wrapperClassname={classes.masonery__item}
+        type={'accessibleOverlayColor'}
+      >
+          <h4 className={classes.masonery__header}>accessibleOverlayColor</h4>
+          <p className={classes.masonery__description}> accessibleOverlayColor </p>
+      </TextOverlay>
   </div>
   );
 };
