@@ -32,6 +32,7 @@ function App() {
           url={image} 
           wrapperClassname={classes.masonery__item}
           type={TEXT_OVERLAY_TYPES[i]}
+          key={TEXT_OVERLAY_TYPES[i]}
         >
             <h4 className={classes.masonery__header}>{TEXT_OVERLAY_TYPES[i]}</h4>
             <p className={classes.masonery__description}> {text} </p>
